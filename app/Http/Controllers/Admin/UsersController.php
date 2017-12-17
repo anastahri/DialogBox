@@ -51,7 +51,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required', 'password' => 'required', 'roles' => 'required']);
+        $this->validate($request, [
+            'name' => 'required', 
+            'username' => 'required',
+            'email' => 'required', 
+            'password' => 'required', 
+            'roles' => 'required'
+        ]);
 
         $data = $request->except('password');
         $data['password'] = bcrypt($request->password);
@@ -90,7 +96,7 @@ class UsersController extends Controller
         $roles = Role::select('id', 'name', 'label')->get();
         $roles = $roles->pluck('label', 'name');
 
-        $user = User::with('roles')->select('id', 'name', 'email')->findOrFail($id);
+        $user = User::with('roles')->select('id', 'name', 'username', 'email')->findOrFail($id);
         $user_roles = [];
         foreach ($user->roles as $role) {
             $user_roles[] = $role->name;
@@ -109,7 +115,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required', 'roles' => 'required']);
+        $this->validate($request, [
+            'name' => 'required', 
+            'username' => 'required',
+            'email' => 'required', 
+            'roles' => 'required'
+        ]);
 
         $data = $request->except('password');
         if ($request->has('password')) {

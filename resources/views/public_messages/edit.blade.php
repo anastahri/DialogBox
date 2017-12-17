@@ -1,7 +1,7 @@
 <!-- create.blade.php -->
 @extends('layouts.app')
 
-@section('title', 'Homepage')
+@section('title', 'Edit post')
 
 @section('content')
 

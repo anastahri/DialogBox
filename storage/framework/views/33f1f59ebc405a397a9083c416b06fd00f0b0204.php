@@ -1,5 +1,7 @@
 
 
+<?php $__env->startSection('title', 'Manage Users'); ?>
+
 <?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row">
@@ -32,14 +34,16 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Name</th><th>Email</th><th>Actions</th>
+                                        <th>ID</th><th>Username</th><th>Name</th><th>Email</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td><?php echo e($item->id); ?></td>
-                                        <td><a href="<?php echo e(url('/admin/users', $item->id)); ?>"><?php echo e($item->name); ?></a></td><td><?php echo e($item->email); ?></td>
+                                        <td><?php echo e($item->username); ?></td>
+                                        <td><a href="<?php echo e(url('/admin/users', $item->id)); ?>"><?php echo e($item->name); ?></a></td>
+                                        <td><?php echo e($item->email); ?></td>
                                         <td>
                                             <a href="<?php echo e(url('/admin/users/' . $item->id)); ?>" title="View User"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="<?php echo e(url('/admin/users/' . $item->id . '/edit')); ?>" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

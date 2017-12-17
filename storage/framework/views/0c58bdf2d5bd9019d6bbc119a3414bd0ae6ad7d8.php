@@ -10,7 +10,7 @@
                 <div class="panel-body">
                 	<h1>DialogBox</h1>
                 	<h2>Messaging App</h2>
-                    Log in to continue.
+                    <a href="<?php echo e(url('/login')); ?>">Log in</a> to continue.
                 </div>
             </div>
         </div>

@@ -13,10 +13,8 @@
 
 
 Route::get('/', function () {
-	if(Auth::check())
-		return redirect('/home');
-	else 
-      return view('welcome');
+	if(Auth::check()) return redirect('/home');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -24,13 +22,18 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('public_messages','Public_messageController')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('admin', 'Admin\AdminController@index');
-Route::resource('admin/roles', 'Admin\RolesController');
-Route::resource('admin/permissions', 'Admin\PermissionsController');
-Route::resource('admin/users', 'Admin\UsersController');
-Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
-Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
+	Route::get('/', ['uses' => 'AdminController@index']);
+	Route::resource('roles', 'RolesController');
+	Route::resource('permissions', 'PermissionsController');
+	Route::resource('users', 'UsersController');
+	Route::get('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
+	Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+});
+
+Route::get('profile/{username}','ProfileController@profile')->middleware('auth');

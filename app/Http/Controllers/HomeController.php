@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pub_messages = Public_message::all();
+        $pub_messages = Public_message::all()->sortByDesc('updated_at');
         return view('home',compact('pub_messages'));
     }
 }

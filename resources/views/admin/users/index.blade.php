@@ -1,5 +1,7 @@
 @extends('layouts.backend')
 
+@section('title', 'Manage Users')
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -30,14 +32,16 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Name</th><th>Email</th><th>Actions</th>
+                                        <th>ID</th><th>Username</th><th>Name</th><th>Email</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($users as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td><a href="{{ url('/admin/users', $item->id) }}">{{ $item->name }}</a></td><td>{{ $item->email }}</td>
+                                        <td>{{ $item->username }}</td>
+                                        <td><a href="{{ url('/admin/users', $item->id) }}">{{ $item->name }}</a></td>
+                                        <td>{{ $item->email }}</td>
                                         <td>
                                             <a href="{{ url('/admin/users/' . $item->id) }}" title="View User"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/users/' . $item->id . '/edit') }}" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

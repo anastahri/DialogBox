@@ -15,8 +15,7 @@ class CreatePublicMessagesTable extends Migration
     {
         Schema::create('public_messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->onDelete('cascade');
             $table->text('message');
             $table->timestamps();
         });

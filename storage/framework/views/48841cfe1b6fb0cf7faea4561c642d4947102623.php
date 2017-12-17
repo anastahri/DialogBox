@@ -1,5 +1,10 @@
 
 
+<?php $__env->startSection('title'); ?>
+    User : <?php echo e($user->username); ?>
+
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row">
@@ -34,12 +39,12 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID.</th> <th>Name</th><th>Email</th>
+                                        <th>ID.</th> <th>Username</th><th>Name</th><th>Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><?php echo e($user->id); ?></td> <td> <?php echo e($user->name); ?> </td><td> <?php echo e($user->email); ?> </td>
+                                        <td><?php echo e($user->id); ?></td> <td> <?php echo e($user->username); ?> </td><td> <?php echo e($user->name); ?> </td><td> <?php echo e($user->email); ?> </td>
                                     </tr>
                                 </tbody>
                             </table>

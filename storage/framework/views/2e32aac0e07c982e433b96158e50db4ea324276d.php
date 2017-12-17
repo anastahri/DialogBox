@@ -1,5 +1,7 @@
 
 
+<?php $__env->startSection('title', 'Manage Permissions'); ?>
+
 <?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row">

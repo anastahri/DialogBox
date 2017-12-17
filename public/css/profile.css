@@ -1,0 +1,10 @@
+.avatar_img{
+	max-width: 150px;
+	border: 2px solid #fff;
+	border-radius: 100%
+}
+.avatar_img_small{
+	max-width: 100px;
+	border: 2px solid #fff;
+	border-radius: 100%
+}

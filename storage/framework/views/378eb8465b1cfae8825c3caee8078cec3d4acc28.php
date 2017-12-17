@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Homepage'); ?>
+<?php $__env->startSection('title', 'All public posts'); ?>
 
 <?php $__env->startSection('content'); ?>
 

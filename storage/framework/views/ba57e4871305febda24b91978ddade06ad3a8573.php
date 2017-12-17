@@ -8,6 +8,16 @@
 
     </div>
 </div>
+<div class="form-group<?php echo e($errors->has('username') ? ' has-error' : ''); ?>">
+    <?php echo Form::label('username', 'Username: ', ['class' => 'col-md-4 control-label']); ?>
+
+    <div class="col-md-6">
+        <?php echo Form::text('username', null, ['class' => 'form-control', 'required' => 'required']); ?>
+
+        <?php echo $errors->first('username', '<p class="help-block">:message</p>'); ?>
+
+    </div>
+</div>
 <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
     <?php echo Form::label('email', 'Email: ', ['class' => 'col-md-4 control-label']); ?>
 

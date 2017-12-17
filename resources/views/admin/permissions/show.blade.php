@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Permission : {{ $permission->label }}
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

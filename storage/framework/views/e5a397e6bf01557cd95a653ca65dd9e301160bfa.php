@@ -1,7 +1,7 @@
 <!-- create.blade.php -->
 
 
-<?php $__env->startSection('title', 'Homepage'); ?>
+<?php $__env->startSection('title', 'Edit post'); ?>
 
 <?php $__env->startSection('content'); ?>
 

@@ -44,7 +44,7 @@ class Public_messageController extends Controller
         $pub_message->user_id = Auth::id();
         $pub_message->save();
 
-        return back()->with('success', 'Message has been posted');;
+        return redirect('/home')->with('success', 'Message has been posted');;
     }
 
     /**
@@ -85,7 +85,7 @@ class Public_messageController extends Controller
         ]);
         $pub_message->message = $request->get('message');
         $pub_message->save();
-        return redirect('public_messages')->with('success','Message has been updated');
+        return redirect('/home')->with('success','Message has been updated');
     }
 
     /**
@@ -98,6 +98,6 @@ class Public_messageController extends Controller
     {
         $pub_message = Public_message::find($id);
         $pub_message->delete();
-        return redirect('public_messages')->with('success','Message has been  deleted');
+        return redirect('/home')->with('success','Message has been  deleted');
     }
 }

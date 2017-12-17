@@ -1,5 +1,7 @@
 @extends('layouts.backend')
 
+@section('title', 'Create Permission')
+
 @section('content')
     <div class="container">
         <div class="row">

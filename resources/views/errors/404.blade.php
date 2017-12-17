@@ -1,18 +1,17 @@
-@extends('layouts.backend')
+@extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Error 404')
 
 @section('content')
 <div class="container">
     <div class="row">
-        @include('admin.sidebar')
-
-        <div class="col-md-9">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    Your application's dashboard.
+                	<h1>DialogBox</h1>
+                    <h2>Error 404 : Page not found. {{ $exception->getMessage() }}</h2>
                 </div>
             </div>
         </div>
