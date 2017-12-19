@@ -6,16 +6,10 @@
 <?php $__env->startSection('content'); ?>
 
 <div class="container">
+
+<?php echo $__env->make('alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
   <h2>Edit A Public Message</h2><br  />
-  <?php if($errors->any()): ?>
-  <div class="alert alert-danger">
-      <ul>
-          <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-              <li><?php echo e($error); ?></li>
-          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-      </ul>
-  </div><br />
-  <?php endif; ?>
   <form method="post" action="<?php echo e(action('Public_messageController@update', $id)); ?>">
     <?php echo e(csrf_field()); ?>
 

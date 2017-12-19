@@ -6,16 +6,10 @@
 @section('content')
 
 <div class="container">
+
+@include ('alert')
+
   <h2>Edit A Public Message</h2><br  />
-  @if ($errors->any())
-  <div class="alert alert-danger">
-      <ul>
-          @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-          @endforeach
-      </ul>
-  </div><br />
-  @endif
   <form method="post" action="{{action('Public_messageController@update', $id)}}">
     {{csrf_field()}}
     <input name="_method" type="hidden" value="PATCH">

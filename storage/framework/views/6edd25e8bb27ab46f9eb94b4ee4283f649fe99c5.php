@@ -61,6 +61,9 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="<?php echo e(url('/profile')); ?>/<?php echo e(Auth::user()->username); ?>">Your profile</a>
+                                    </li>
+                                    <li>
                                         <a href="<?php echo e(url('/logout')); ?>"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

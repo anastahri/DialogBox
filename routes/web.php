@@ -36,4 +36,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 	Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
 });
 
-Route::get('profile/{username}','ProfileController@profile')->middleware('auth');
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('profile/{username}','ProfileController@profile');
+	Route::get('profile/edit/{username}','ProfileController@edit');
+	Route::post('profile/edit/{username}','ProfileController@update');
+	Route::get('profile/password/edit/{username}','ProfileController@edit_password');
+	Route::post('profile/password/edit/{username}','ProfileController@update_password');
+});
