@@ -17,7 +17,7 @@
                 <div class="panel-body">
                     <table>
                         <tr>
-                            <td><a href="{{ url('/profile')}}/{{ $pub_message->User->username }}"><img class="avatar_img_small" src="{{ asset('/images/no_img.png') }}"></a></td>
+                            <td><a href="{{ url('/profile')}}/{{ $pub_message->User->username }}"><img class="avatar_img_small" src="{{ url('/images/avatars') }}/{{ $pub_message->user->avatar }}"></a></td>
                             <td rowspan="2" style="vertical-align: top; padding: 10px">
                                 {{ $pub_message->message }}
                                 @if(Auth::id() == $pub_message->User->id)

@@ -11,21 +11,30 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Profile of {{ $user->name }}</div>
                 <div class="panel-body text-center">
-                    <img class="avatar_img" src="{{ asset('/images/no_img.png') }}"><br>
-                    <p><a href="#">Change your avatar</a></p>
-                    <form method="POST" action="/profile/edit/{{ $user->username }}" class="form-horizontal">
+                    <div style="width: 150px; margin: auto;">
+                        <img class="avatar_img" src="{{ url('/images/avatars') }}/{{ $user->avatar }}">
+                        <form enctype="multipart/form-data" action="/profile/avatar/edit" method="POST">
+                            {{ csrf_field() }}
+                            <div class="form-group{{ $errors->has('avatar') ? ' has-error' : ''}}">
+                                <label for="avatar">Update Profile Image</label>
+                                <input id="avatar" type="file" name="avatar" class="form-control" required>
+                                <input type="submit" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                    <form method="POST" action="/profile/info/edit" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : ''}}">
-                            <label class="col-md-4 control-label">Name:</label>
+                            <label for="name" class="col-md-4 control-label">Name:</label>
                             <div class="col-md-6">
-                                <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
+                                <input type="text" id="name" name="name" class="form-control" value="{{ $user->name }}" required>
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : ''}}">
-                            <label class="col-md-4 control-label">Email:</label>
+                            <label for="email" class="col-md-4 control-label">Email:</label>
                             <div class="col-md-6">
-                                <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
+                                <input id="email" type="email" name="email" class="form-control" value="{{ $user->email }}" required>
                                 {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>

@@ -60,25 +60,18 @@
                             <li><a href="<?php echo e(url('/register')); ?>">Register</a></li>
                         <?php else: ?>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
+                                    <img style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%" src="<?php echo e(url('/images/avatars')); ?>/<?php echo e(Auth::user()->avatar); ?>">
                                     <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="<?php echo e(url('/profile')); ?>/<?php echo e(Auth::user()->username); ?>">Your profile</a>
+                                        <a href="<?php echo e(url('/profile')); ?>/<?php echo e(Auth::user()->username); ?>"><i class="fa fa-btn fa-user"></i> Your profile</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo e(url('/logout')); ?>"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;">
-                                            <?php echo e(csrf_field()); ?>
-
-                                        </form>
+                                        <a href="<?php echo e(url('/logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-btn fa-sign-out"></i> Logout</a>
+                                        <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;"><?php echo e(csrf_field()); ?></form>
                                     </li>
                                 </ul>
                             </li>

@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     <table>
                         <tr>
-                            <td><a href="<?php echo e(url('/profile')); ?>/<?php echo e($pub_message->User->username); ?>"><img class="avatar_img_small" src="<?php echo e(asset('/images/no_img.png')); ?>"></a></td>
+                            <td><a href="<?php echo e(url('/profile')); ?>/<?php echo e($pub_message->User->username); ?>"><img class="avatar_img_small" src="<?php echo e(url('/images/avatars')); ?>/<?php echo e($pub_message->user->avatar); ?>"></a></td>
                             <td rowspan="2" style="vertical-align: top; padding: 10px">
                                 <?php echo e($pub_message->message); ?>
 

@@ -8,3 +8,6 @@
 	border: 2px solid #fff;
 	border-radius: 100%
 }
+.avatar_nav_dropdown{
+	width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%
+}

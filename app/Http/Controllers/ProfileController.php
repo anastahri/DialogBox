@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class ProfileController extends Controller
 {
@@ -18,20 +19,15 @@ class ProfileController extends Controller
 		abort(404);
 	}
 
-	public function edit($username) 
+	public function edit() 
 	{
-		$user = User::whereUsername($username)->first();
-		if ($user) {
-			if (Auth::id() == $user->id) return view('user.edit', compact('user', $username));
-			abort(401,'Unauthorized access.');
-		}
-		abort(404);
+		$user = Auth::user();
+		return view('user.edit', compact('user'));
 	}
 
-    public function update(Request $request, $username)
+    public function update(Request $request)
     {
-		$user = User::whereUsername($username)->first();
-		if (Auth::id() != $user->id) abort(401,'Unauthorized access.');
+		$user = Auth::user();
 		$validator = Validator::make($request->all(), [
 		    'name' => 'required|string|max:255',
 		    'email' => [
@@ -42,23 +38,18 @@ class ProfileController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->save();
-        return redirect('/profile/' .$username)->with('success', 'Profile updated!');
+        return redirect('/profile/' .$user->username)->with('success', 'Profile updated!');
     }
     
-    public function edit_password($username) 
+    public function edit_password() 
 	{
-		$user = User::whereUsername($username)->first();
-		if ($user) {
-			if (Auth::id() == $user->id) return view('user.password', compact('user', $username));
-			abort(401,'Unauthorized access.');
-		}
-		abort(404);
+		$user = Auth::user();
+		return view('user.password', compact('user'));
 	}
 
-    public function update_password(Request $request, $username)
+    public function update_password(Request $request)
     {
-		$user = User::whereUsername($username)->first();
-		if (Auth::id() != $user->id) abort(401,'Unauthorized access.');
+		$user = Auth::user();
         $this->validate(request(), [
 			'old_password' => 'required', 
 			'new_password' => 'required|string|min:6|confirmed'
@@ -67,6 +58,20 @@ class ProfileController extends Controller
         	return back()->with('error', 'Current password was incorrect!');	
         $user->password = bcrypt($request->get('new_password'));
         $user->save();
-        return redirect('/profile/' .$username)->with('success', 'Password updated!');
+        return redirect('/profile/' .$user->username)->with('success', 'Password updated!');
+    }
+
+    public function update_avatar(Request $request)
+    {
+    	if($request->hasFile('avatar')){
+    		$avatar = $request->file('avatar');
+    		$filename = time() . '.' . $avatar->getClientOriginalExtension();
+    		Image::make($avatar)->resize(150, 150)->save( public_path('/images/avatars/' . $filename ) );
+    		$user = Auth::user();
+    		$user->avatar = $filename;
+    		$user->save();
+    		return redirect('/profile/' .$user->username)->with('success', 'Avatar updated!');
+    	}
+    	return view('/');
     }
 }

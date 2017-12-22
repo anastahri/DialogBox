@@ -38,8 +38,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('profile/{username}','ProfileController@profile');
-	Route::get('profile/edit/{username}','ProfileController@edit');
-	Route::post('profile/edit/{username}','ProfileController@update');
-	Route::get('profile/password/edit/{username}','ProfileController@edit_password');
-	Route::post('profile/password/edit/{username}','ProfileController@update_password');
+	Route::get('profile/info/edit','ProfileController@edit');
+	Route::post('profile/info/edit','ProfileController@update');
+	Route::get('profile/password/edit','ProfileController@edit_password');
+	Route::post('profile/password/edit','ProfileController@update_password');
+	Route::post('profile/avatar/edit','ProfileController@update_avatar');
+	Route::get('profile/avatar/edit','ProfileController@edit');
 });
