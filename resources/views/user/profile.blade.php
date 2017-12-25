@@ -14,6 +14,14 @@
                 <div class="panel-body text-center">
                     <img class="avatar_img" src="{{ url('/images/avatars') }}/{{ $user->avatar }}">
                     <h2>{{ $user->name }}</h2>
+                    <h4>Group : 
+                        @foreach ($group_array as $group)
+                        <a href="{{ url('/group') }}/{{$group->name}}">{{ $group->label }}</a>
+                        @if ($group->id != $group_array[$group_count - 1]->id)
+                        <i class="fa fa-caret-right"></i>
+                        @endif
+                        @endforeach
+                    </h4>
                     <h4>{{ $user->email }}</h4>
                     <h4>Membre since : {{ $user->created_at->format('l j F Y') }}</h4>
                     @if(Auth::id() == $user->id) 

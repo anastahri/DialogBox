@@ -372,6 +372,7 @@ class ComposerStaticInit41877c5df3d8dc462a1d79ad30148874
         'App\\Public_message' => __DIR__ . '/../..' . '/app/Public_message.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\group' => __DIR__ . '/../..' . '/app/group.php',
         'Appzcoder\\CrudGenerator\\Commands\\CrudCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudCommand.php',
         'Appzcoder\\CrudGenerator\\Commands\\CrudControllerCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudControllerCommand.php',
         'Appzcoder\\CrudGenerator\\Commands\\CrudLangCommand' => __DIR__ . '/..' . '/appzcoder/crud-generator/src/Commands/CrudLangCommand.php',

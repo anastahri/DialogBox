@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
+    <title>{{ config('app.name') }} - @yield('title')</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -60,7 +60,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
-                                    <img style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%" src="{{ url('/images/avatars') }}/{{ Auth::user()->avatar }}">
+                                    <img class="avatar_nav_dropdown" src="{{ url('/images/avatars') }}/{{ Auth::user()->avatar }}">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

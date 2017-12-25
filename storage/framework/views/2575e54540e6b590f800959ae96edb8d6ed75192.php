@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title><?php echo e(config('app.name', 'Laravel')); ?> - <?php echo $__env->yieldContent('title'); ?></title>
+    <title><?php echo e(config('app.name')); ?> - <?php echo $__env->yieldContent('title'); ?></title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -61,7 +61,7 @@
                         <?php else: ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
-                                    <img style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%" src="<?php echo e(url('/images/avatars')); ?>/<?php echo e(Auth::user()->avatar); ?>">
+                                    <img class="avatar_nav_dropdown" src="<?php echo e(url('/images/avatars')); ?>/<?php echo e(Auth::user()->avatar); ?>">
                                     <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
                                 </a>
 

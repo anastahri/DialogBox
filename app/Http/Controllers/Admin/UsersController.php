@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Role;
+use App\Group;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -36,10 +38,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles = Role::select('id', 'name', 'label')->get();
-        $roles = $roles->pluck('label', 'name');
-
-        return view('admin.users.create', compact('roles'));
+        $roles = Role::all();
+        $groups = Group::all();
+        return view('admin.users.create', compact('roles', 'groups'));
     }
 
     /**
@@ -52,22 +53,23 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required', 
-            'username' => 'required',
-            'email' => 'required', 
-            'password' => 'required', 
-            'roles' => 'required'
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:25|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'group_id' => 'nullable|integer|exists:groups,id',
+            'roles' => 'nullable|exists:roles,name',
         ]);
 
         $data = $request->except('password');
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);
-
-        foreach ($request->roles as $role) {
-            $user->assignRole($role);
+        if ($request->roles){
+            foreach ($request->roles as $role) {
+                $user->assignRole($role);
+            }
         }
-
-        return redirect('admin/users')->with('flash_message', 'User added!');
+        return redirect('admin/users')->with('success', 'User added!');
     }
 
     /**
@@ -93,16 +95,18 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $roles = Role::select('id', 'name', 'label')->get();
-        $roles = $roles->pluck('label', 'name');
+        $roles = Role::all();
 
-        $user = User::with('roles')->select('id', 'name', 'username', 'email')->findOrFail($id);
+        $user = User::with('roles')->select('id', 'name', 'username', 'email', 'group_id')->findOrFail($id);
         $user_roles = [];
+
+        $groups = Group::all();
+
         foreach ($user->roles as $role) {
             $user_roles[] = $role->name;
         }
 
-        return view('admin.users.edit', compact('user', 'roles', 'user_roles'));
+        return view('admin.users.edit', compact('user', 'roles', 'user_roles', 'groups'));
     }
 
     /**
@@ -115,27 +119,36 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::findOrFail($id);
         $this->validate($request, [
-            'name' => 'required', 
-            'username' => 'required',
-            'email' => 'required', 
-            'roles' => 'required'
+            'name' => 'required|string|max:255',
+            'username' => [
+                'required','string','max:25',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'email' => [
+                'required','string','email','max:255',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'password' => 'nullable|string|min:6',
+            'group_id' => 'nullable|integer|exists:groups,id',
+            'roles' => 'nullable|exists:roles,name',
         ]);
 
         $data = $request->except('password');
-        if ($request->has('password')) {
+        if ($request->filled('password')) {
             $data['password'] = bcrypt($request->password);
         }
 
-        $user = User::findOrFail($id);
         $user->update($data);
 
         $user->roles()->detach();
-        foreach ($request->roles as $role) {
-            $user->assignRole($role);
+        if (count($request->roles)){
+            foreach ($request->roles as $role) {
+                $user->assignRole($role);
+            }
         }
-
-        return redirect('admin/users')->with('flash_message', 'User updated!');
+        return redirect('admin/users')->with('success', 'User updated!');
     }
 
     /**
@@ -149,6 +162,6 @@ class UsersController extends Controller
     {
         User::destroy($id);
 
-        return redirect('admin/users')->with('flash_message', 'User deleted!');
+        return redirect('admin/users')->with('success', 'User deleted!');
     }
 }

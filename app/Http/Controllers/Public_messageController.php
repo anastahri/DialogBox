@@ -15,8 +15,13 @@ class Public_messageController extends Controller
      */
     public function index()
     {
+        return redirect('/');
+    }
+
+    public function admin()
+    {
         $public_messages = Public_message::all();
-        return view('public_messages.index', compact('public_messages'));
+        return view('public_messages.admin', compact('public_messages'));
     }
 
     /**
@@ -44,7 +49,7 @@ class Public_messageController extends Controller
         $pub_message->user_id = Auth::id();
         $pub_message->save();
 
-        return redirect('/home')->with('success', 'Message has been posted');;
+        return redirect('/home')->with('success', 'Message has been posted');
     }
 
     /**

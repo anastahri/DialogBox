@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', function () {
 	if(Auth::check()) return redirect('/home');
     return view('welcome');
@@ -27,21 +26,28 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
-	Route::get('/', ['uses' => 'AdminController@index']);
-	Route::resource('roles', 'RolesController');
-	Route::resource('permissions', 'PermissionsController');
-	Route::resource('users', 'UsersController');
-	Route::get('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
-	Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
+	Route::get('/', ['uses' => 'Admin\AdminController@index']);
+	Route::resource('roles', 'Admin\RolesController');
+	Route::resource('permissions', 'Admin\PermissionsController');
+	Route::resource('users', 'Admin\UsersController');
+	Route::get('public_messages','Public_messageController@admin')->middleware('auth');
+	//Route::get('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
+	//Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
 });
 
-Route::group(['middleware' => ['auth']], function () {
-	Route::get('profile/{username}','ProfileController@profile');
-	Route::get('profile/info/edit','ProfileController@edit');
-	Route::post('profile/info/edit','ProfileController@update');
-	Route::get('profile/password/edit','ProfileController@edit_password');
-	Route::post('profile/password/edit','ProfileController@update_password');
-	Route::post('profile/avatar/edit','ProfileController@update_avatar');
-	Route::get('profile/avatar/edit','ProfileController@edit');
+Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function () {
+	Route::get('/{username}','ProfileController@profile');
+	Route::get('info/edit','ProfileController@edit');
+	Route::post('info/edit','ProfileController@update');
+	Route::get('password/edit','ProfileController@edit_password');
+	Route::post('password/edit','ProfileController@update_password');
+	Route::get('avatar/edit','ProfileController@edit_avatar');
+	Route::post('avatar/edit','ProfileController@update_avatar');
 });
+
+Route::group(['middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
+	Route::resource('admin/groups','GroupsController')->middleware('auth');
+});
+
+Route::get('group/{name}', 'GroupsController@group');

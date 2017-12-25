@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password',
+        'name', 'username', 'email', 'password', 'group_id'
     ];
 
     /**
@@ -30,5 +30,10 @@ class User extends Authenticatable
     public function public_message ()
     {
         return $this->hasMany('App\Public_message');
+    }
+
+    public function group ()
+    {
+        return $this->hasOne('App\Group');
     }
 }

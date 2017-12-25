@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
+        <link href="/css/profile.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Scripts -->
@@ -55,25 +56,18 @@
                             <li><a href="<?php echo e(url('/register')); ?>">Register</a></li>
                         <?php else: ?>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
+                                    <img class="avatar_nav_dropdown" src="<?php echo e(url('/images/avatars')); ?>/<?php echo e(Auth::user()->avatar); ?>">
                                     <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="<?php echo e(url('/profile')); ?>/<?php echo e(Auth::user()->username); ?>">Your profile</a>
+                                        <a href="<?php echo e(url('/profile')); ?>/<?php echo e(Auth::user()->username); ?>"><i class="fa fa-btn fa-user"></i> Your profile</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo e(url('/logout')); ?>"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;">
-                                            <?php echo e(csrf_field()); ?>
-
-                                        </form>
+                                        <a href="<?php echo e(url('/logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-btn fa-sign-out"></i> Logout</a>
+                                        <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;"><?php echo e(csrf_field()); ?></form>
                                     </li>
                                 </ul>
                             </li>
@@ -83,16 +77,8 @@
             </div>
         </nav>
 
-        <?php if(Session::has('flash_message')): ?>
-            <div class="container">
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <?php echo e(Session::get('flash_message')); ?>
-
-                </div>
-            </div>
-        <?php endif; ?>
-
+        
+        <?php echo $__env->make('alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <?php echo $__env->yieldContent('content'); ?>
 
         <hr/>

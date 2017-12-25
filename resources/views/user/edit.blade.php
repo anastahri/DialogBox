@@ -11,17 +11,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Profile of {{ $user->name }}</div>
                 <div class="panel-body text-center">
-                    <div style="width: 150px; margin: auto;">
-                        <img class="avatar_img" src="{{ url('/images/avatars') }}/{{ $user->avatar }}">
-                        <form enctype="multipart/form-data" action="/profile/avatar/edit" method="POST">
-                            {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('avatar') ? ' has-error' : ''}}">
-                                <label for="avatar">Update Profile Image</label>
-                                <input id="avatar" type="file" name="avatar" class="form-control" required>
-                                <input type="submit" class="btn btn-primary">
-                            </div>
-                        </form>
-                    </div>
+                    <img class="avatar_img" src="{{ url('/images/avatars') }}/{{ $user->avatar }}">
+                    <br /><br />
+                    <form enctype="multipart/form-data" action="/profile/avatar/edit" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : ''}}">
+                            <div style="width: 0.1px; margin: auto;"><input id="avatar" type="file" name="avatar" class="form-control" style="width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1;" required></div>
+                            <label for="avatar">Choose new profile image</label>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Change profile image">
+                    </form><br /><br />
                     <form method="POST" action="/profile/info/edit" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : ''}}">

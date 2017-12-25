@@ -37,6 +37,7 @@ return array(
     'App\\Public_message' => $baseDir . '/app/Public_message.php',
     'App\\Role' => $baseDir . '/app/Role.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'App\\group' => $baseDir . '/app/group.php',
     'Appzcoder\\CrudGenerator\\Commands\\CrudCommand' => $vendorDir . '/appzcoder/crud-generator/src/Commands/CrudCommand.php',
     'Appzcoder\\CrudGenerator\\Commands\\CrudControllerCommand' => $vendorDir . '/appzcoder/crud-generator/src/Commands/CrudControllerCommand.php',
     'Appzcoder\\CrudGenerator\\Commands\\CrudLangCommand' => $vendorDir . '/appzcoder/crud-generator/src/Commands/CrudLangCommand.php',
