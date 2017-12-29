@@ -7,12 +7,13 @@
 <div class="container">
 
 @include ('alert')
-
-@include ('public_messages.create')
-
-@foreach($pub_messages as $pub_message)
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        @include('home_sidebar')
+        <div class="col-md-9">    
+            @include ('public_messages.create')
+        
+            
+            @foreach($pub_messages as $pub_message)
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table>
@@ -37,8 +38,8 @@
                     </table>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
-    @endforeach
 </div>
 @endsection

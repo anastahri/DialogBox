@@ -5,12 +5,13 @@
 <div class="container">
 
 <?php echo $__env->make('alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-<?php echo $__env->make('public_messages.create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-<?php $__currentLoopData = $pub_messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pub_message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <?php echo $__env->make('home_sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <div class="col-md-9">    
+            <?php echo $__env->make('public_messages.create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        
+            
+            <?php $__currentLoopData = $pub_messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pub_message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table>
@@ -37,9 +38,9 @@
                     </table>
                 </div>
             </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Public_message;
+use App\Group;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $pub_messages = Public_message::all()->sortByDesc('updated_at');
-        return view('home',compact('pub_messages'));
+        $groupes = Group::whereGroup_id(null)->get();
+        return view('home',compact('pub_messages', 'groupes'));
     }
 }

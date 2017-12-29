@@ -10,15 +10,18 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ $group->label }}</div>
+                <div class="panel-heading">Group : <b>{{ $group->label }}</b></div>
                 <div class="panel-body">
-                    <h4>Group :
-                        @foreach ($group_array as $gr)
-                        <b><a href="{{ url('/group') }}/{{$gr->name}}">{{ $gr->label }}</a></b> <i class="fa fa-arrow-right"></i>
-                        @endforeach
-                        <b>{{ $group->label }}</b>
-                    </h4>
                     
+                    @if (count($group_array))
+                        <ul class="breadcrumb">
+                            @foreach ($group_array as $gr)
+                            <li class="breadcrumb-item"><a href="{{ url('/group') }}/{{$gr->name}}">{{ $gr->label }}</a></li>
+                            @endforeach
+                            <li class="breadcrumb-item active">{{ $group->label }}</li>
+                        </ul>
+                    @endif
+
                     <h4>Description :</h4>
                     <p>{{ $group->description }}</p>
                     

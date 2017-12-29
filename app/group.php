@@ -22,4 +22,9 @@ class Group extends Model
     {
         return $this->belongsTo(Group::class);
     }
+
+    public function subGoups()
+    {
+        return Group::whereGroup_id($this->id)->get();
+    }
 }
