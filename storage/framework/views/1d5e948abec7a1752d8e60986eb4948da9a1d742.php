@@ -99,4 +99,13 @@
     </div>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('scripts'); ?>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script>
+    $(window).on("load", function() {
+        $('#username').val('<?php echo e($user->username); ?>');
+    });
+    </script>
+<?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.backend', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

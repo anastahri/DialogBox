@@ -95,3 +95,12 @@
         </div>
     </div>
 @endsection
+
+@section ('scripts')
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script>
+    $(window).on("load", function() {
+        $('#username').val('{{ $user->username }}');
+    });
+    </script>
+@endsection

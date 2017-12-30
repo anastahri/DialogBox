@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Role;
 use App\Group;
+use App\Public_message;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -160,6 +161,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        Public_message::whereUser_id($id)->delete();
         User::destroy($id);
 
         return redirect('admin/users')->with('success', 'User deleted!');

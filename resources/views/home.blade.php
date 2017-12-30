@@ -11,7 +11,6 @@
         @include('home_sidebar')
         <div class="col-md-9">    
             @include ('public_messages.create')
-        
             
             @foreach($pub_messages as $pub_message)
             <div class="panel panel-default">
@@ -39,6 +38,7 @@
                 </div>
             </div>
             @endforeach
+            
         </div>
     </div>
 </div>
