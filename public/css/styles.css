@@ -15,16 +15,16 @@
 }
 
 @media screen and (min-width: 768px) {
-  .dropdown:hover .dropdown-menu, .btn-group:hover .dropdown-menu{
+  .dropdown-hover:hover .dropdown-hover-menu{
         display: block;
     }
-    .dropdown-menu{
+    .dropdown-hover-menu{
         margin-top: 0;
     }
-    .dropdown-toggle{
+    .dropdown-hover-toggle{
         margin-bottom: 2px;
     }
-    .navbar .dropdown-toggle, .nav-tabs .dropdown-toggle{
+    .navbar-hover .dropdown-hover-toggle, .nav-hover-tabs .dropdown-hover-toggle{
         margin-bottom: 0;
     }
 }

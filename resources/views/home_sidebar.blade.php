@@ -7,9 +7,9 @@
                 
                 @if (count($grp->subGoups())>0)
                 
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="{{url('/group')}}/{{$grp->name}}">{{ $grp->label }} <b class="caret"></b></a>
-                        <ul class="dropdown-menu" style="left: 100px;">
+                    <li class="dropdown dropdown-hover">
+                        <a class="dropdown-toggle dropdown-hover-toggle" href="{{url('/group')}}/{{$grp->name}}">{{ $grp->label }} <b class="caret"></b></a>
+                        <ul class="dropdown-menu dropdown-hover-menu" style="left: 100px;">
                             @foreach ($grp->subGoups() as $subgrp)
                             <li><a href="{{url('/group')}}/{{$subgrp->name}}">{{$subgrp->label}}</a></li>
                             @endforeach
@@ -30,12 +30,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        $(".dropdown, .btn-group").hover(function(){
-            var dropdownMenu = $(this).children(".dropdown-menu");
+        $(".dropdown-hover").hover(function(){
+            var dropdownMenu = $(this).children(".dropdown-hover-menu");
             if(dropdownMenu.is(":visible")){
                 dropdownMenu.parent().toggleClass("open");
             }
         });
     });     
-</script>
+    </script>
 @endsection
