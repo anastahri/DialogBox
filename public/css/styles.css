@@ -1,0 +1,30 @@
+.avatar_img{
+	max-width: 150px;
+	border: 2px solid #fff;
+	border-radius: 100%
+}
+
+.avatar_img_small{
+	max-width: 100px;
+	border: 2px solid #fff;
+	border-radius: 100%
+}
+
+.avatar_nav_dropdown{
+	width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%
+}
+
+@media screen and (min-width: 768px) {
+  .dropdown:hover .dropdown-menu, .btn-group:hover .dropdown-menu{
+        display: block;
+    }
+    .dropdown-menu{
+        margin-top: 0;
+    }
+    .dropdown-toggle{
+        margin-bottom: 2px;
+    }
+    .navbar .dropdown-toggle, .nav-tabs .dropdown-toggle{
+        margin-bottom: 0;
+    }
+}

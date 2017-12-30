@@ -62,7 +62,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-4">
-                                    <input type="submit" class="btn btn-primary" value="Edit">
+                                    <input type="submit" class="btn btn-primary" value="Save">
                                 </div>
                             </div>
 

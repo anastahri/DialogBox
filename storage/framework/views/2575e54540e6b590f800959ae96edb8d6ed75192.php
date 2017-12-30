@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/profile.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
@@ -93,5 +93,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <?php echo $__env->yieldContent('scripts'); ?>
 </body>
 </html>
