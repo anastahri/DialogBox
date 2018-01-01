@@ -37,7 +37,11 @@
                                 </thead>
                                 <tbody>
                                 @foreach($users as $item)
+                                    @if ($item->state != 1)
+                                    <tr style="color: red">
+                                    @else
                                     <tr>
+                                    @endif
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->username }}</td>
                                         <td><a href="{{ url('/admin/users', $item->id) }}">{{ $item->name }}</a></td>

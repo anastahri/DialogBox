@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password', 'group_id'
+        'name', 'username', 'email', 'state', 'password', 'group_id'
     ];
 
     /**
@@ -35,5 +35,10 @@ class User extends Authenticatable
     public function group ()
     {
         return $this->hasOne('App\Group');
+    }
+
+    public function isActive ()
+    {
+        return $this->state == 1;
     }
 }

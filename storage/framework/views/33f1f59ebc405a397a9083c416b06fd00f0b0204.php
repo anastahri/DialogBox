@@ -39,7 +39,11 @@
                                 </thead>
                                 <tbody>
                                 <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($item->state != 1): ?>
+                                    <tr style="color: red">
+                                    <?php else: ?>
                                     <tr>
+                                    <?php endif; ?>
                                         <td><?php echo e($item->id); ?></td>
                                         <td><?php echo e($item->username); ?></td>
                                         <td><a href="<?php echo e(url('/admin/users', $item->id)); ?>"><?php echo e($item->name); ?></a></td>

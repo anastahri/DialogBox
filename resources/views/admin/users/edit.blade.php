@@ -80,7 +80,20 @@
                                     </select>
                                 </div>
                             </div>
-                            
+                            <div class="form-group">
+                                <label for="state" class="col-md-4 control-label">State: </label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="state" id="state">
+                                      @if ($user->state == 1)
+                                        <option value="1" selected>Active</option>
+                                        <option value="0">Blocked</option>
+                                      @else
+                                        <option value="1">Active</option>
+                                        <option value="0" selected>Blocked</option>
+                                      @endif
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-4">
                                     <input class="btn btn-primary" type="submit" value="Update">

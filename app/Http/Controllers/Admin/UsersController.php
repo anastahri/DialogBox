@@ -98,7 +98,7 @@ class UsersController extends Controller
     {
         $roles = Role::all();
 
-        $user = User::with('roles')->select('id', 'name', 'username', 'email', 'group_id')->findOrFail($id);
+        $user = User::with('roles')->select('id', 'name', 'username', 'email', 'group_id', 'state')->findOrFail($id);
         $user_roles = [];
 
         $groups = Group::all();
@@ -131,6 +131,7 @@ class UsersController extends Controller
                 'required','string','email','max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
+            'state' => 'required|boolean',
             'password' => 'nullable|string|min:6',
             'group_id' => 'nullable|integer|exists:groups,id',
             'roles' => 'nullable|exists:roles,name',
