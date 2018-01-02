@@ -46,8 +46,12 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <?php if(Auth::check() && Auth::user()->hasRole('admin')): ?>
-                            <li><a href="<?php echo e(url('/admin')); ?>">Dashboard <span class="sr-only">(current)</span></a></li>    
+                        <?php if(Auth::check()): ?>
+                            <?php if(Auth::user()->hasRole('admin')): ?>
+                            <li><a href="<?php echo e(url('/admin')); ?>">Dashboard <span class="sr-only">(current)</span></a></li>
+                            <?php endif; ?>
+                            <li><a href="/messages">Conversations <?php echo $__env->make('messenger.unread-count', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?></a></li>
+                            <li><a href="/messages/create">New Message</a></li>
                         <?php else: ?>
                             &nbsp;
                         <?php endif; ?>

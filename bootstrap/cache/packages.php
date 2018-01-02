@@ -20,6 +20,13 @@
       'HTML' => 'Collective\\Html\\HtmlFacade',
     ),
   ),
+  'cmgmyr/messenger' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Cmgmyr\\Messenger\\MessengerServiceProvider',
+    ),
+  ),
   'fideloper/proxy' => 
   array (
     'providers' => 

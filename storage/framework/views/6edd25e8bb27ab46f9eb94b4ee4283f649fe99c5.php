@@ -46,6 +46,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="<?php echo e(url('/admin')); ?>">Dashboard <span class="sr-only">(current)</span></a></li>
+                        <li><a href="/messages">Conversations <?php echo $__env->make('messenger.unread-count', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?></a></li>
+                        <li><a href="/messages/create">New Message</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

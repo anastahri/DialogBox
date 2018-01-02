@@ -45,8 +45,12 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        @if(Auth::check() && Auth::user()->hasRole('admin'))
-                            <li><a href="{{ url('/admin') }}">Dashboard <span class="sr-only">(current)</span></a></li>    
+                        @if(Auth::check())
+                            @if(Auth::user()->hasRole('admin'))
+                            <li><a href="{{ url('/admin') }}">Dashboard <span class="sr-only">(current)</span></a></li>
+                            @endif
+                            <li><a href="/messages">Conversations @include('messenger.unread-count')</a></li>
+                            <li><a href="/messages/create">New Message</a></li>
                         @else
                             &nbsp;
                         @endif

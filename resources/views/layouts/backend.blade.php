@@ -45,6 +45,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/admin') }}">Dashboard <span class="sr-only">(current)</span></a></li>
+                        <li><a href="/messages">Conversations @include('messenger.unread-count')</a></li>
+                        <li><a href="/messages/create">New Message</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

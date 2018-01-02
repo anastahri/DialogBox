@@ -28,3 +28,23 @@
         margin-bottom: 0;
     }
 }
+
+*[data-href] {
+  cursor: pointer;
+}
+.clickable-row-a {
+  display:inline-block;
+  min-height:100%;
+  width:100%;
+}
+
+.clickable-row-a:hover {
+    text-decoration: none;
+}
+
+.td-click {
+  padding:0;  
+}
+.first-row:hover {
+    background-color: primary;
+}
