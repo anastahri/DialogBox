@@ -13,15 +13,18 @@
 			
 			   @if (count($threads) > 0)
 				<table class="table table-hover table-condensed">
+					
 					<thead>
 					<tr class="bg-primary">
 						<th><input type="checkbox"></th>
-						<th>Other participant(s)</th>
+						<th></th>
 						<th>Subject</th>
 						<th>Last message</th>
 						<th>Sent</th>
+						<th>Other participant(s)</th>
 					</tr>
 					</thead>
+					
 					<tbody>
 					@foreach ($threads as $thread)
 						@if ($thread->isUnread(Auth::id()))
@@ -30,9 +33,23 @@
 						<tr data-href="{{ route('messages.show', $thread->id) }}">
 						@endif
 							<td><input type="checkbox"></td>
-							<td class="td-click">
-								<a class="clickable-row-a" href="{{ route('messages.show', $thread->id) }}">{{ $thread->participantsString2(Auth::id()) }}</a>
+							
+							<td>
+							{!! Form::open([
+							    'method' => 'DELETE',
+							    'url' => ['messages', $thread->id],
+							    'style' => 'display:inline'
+							]) !!}
+							    {!! Form::button('', array(
+							            'type' => 'submit',
+							            'class' => 'oi oi-trash',
+							            'title' => 'Delete User',
+							            'onclick'=>'return confirm("Confirm delete?")'
+							    )) !!}
+							{!! Form::close() !!}
+
 							</td>
+							
 							<td class="td-click"><a class="clickable-row-a" href="{{ route('messages.show', $thread->id) }}">{{ $thread->subject }}
         						
         						@if ($thread->userUnreadMessagesCount(Auth::id()))
@@ -54,6 +71,9 @@
 									{{$thread->latestMessage->created_at->format('d/m/y')}}
 								@endif
 							</a></td>
+							<td class="td-click">
+								<a class="clickable-row-a" href="{{ route('messages.show', $thread->id) }}">{{ $thread->participantsString2(Auth::id()) }}</a>
+							</td>
 						</tr>
 					@endforeach
 					</tbody>

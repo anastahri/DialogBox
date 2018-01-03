@@ -91,10 +91,10 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-          'subject' => 'required|string|max:191',
-          'message' => 'required',
-          'user_recipients' => 'required_without:group_recipients',
-          'group_recipients' => 'nullable',
+            'subject' => 'required|string|max:191',
+            'message' => 'required',
+            'user_recipients' => 'required_without:group_recipients',
+            'group_recipients' => 'nullable',
         ]);
 
         $thread = new Thread;
@@ -117,17 +117,17 @@ class MessagesController extends Controller
 
         // Recipients
         if ($request->has('user_recipients')) {
-          $thread->addParticipant($request->get('user_recipients'));
+            $thread->addParticipant($request->get('user_recipients'));
         }
 
         if ($request->has('group_recipients')) {
-          $group_recipts = $request->get('group_recipients');
-          $groups_users = [];
-          foreach ($group_recipts as $group_recipt) {
-            $gr_users = User::whereGroup_id($group_recipt)->pluck('id')->toArray();
-            $groups_users = array_merge($groups_users, $gr_users);
-          }
-          $thread->addParticipant($groups_users);
+            $group_recipts = $request->get('group_recipients');
+            $groups_users = [];
+            foreach ($group_recipts as $group_recipt) {
+                $gr_users = User::whereGroup_id($group_recipt)->pluck('id')->toArray();
+                $groups_users = array_merge($groups_users, $gr_users);
+            }
+            $thread->addParticipant($groups_users);
         }
 
         return redirect()->route('messages');
@@ -142,9 +142,9 @@ class MessagesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate(request(), [
-          'message' => 'required',
-          'user_recipients' => 'nullable',
-          'group_recipients' => 'nullable',
+            'message' => 'required',
+            'user_recipients' => 'nullable',
+            'group_recipients' => 'nullable',
         ]);
 
         $thread = Thread::find($id);
@@ -173,17 +173,29 @@ class MessagesController extends Controller
             }
 
             if ($request->has('group_recipients')) {
-              $group_recipts = $request->get('group_recipients');
-              $groups_users = [];
-              foreach ($group_recipts as $group_recipt) {
-                $gr_users = User::whereGroup_id($group_recipt)->pluck('id')->toArray();
-                $groups_users = array_merge($groups_users, $gr_users);
-              }
-              $thread->addParticipant($groups_users);
+                $group_recipts = $request->get('group_recipients');
+                $groups_users = [];
+                foreach ($group_recipts as $group_recipt) {
+                    $gr_users = User::whereGroup_id($group_recipt)->pluck('id')->toArray();
+                    $groups_users = array_merge($groups_users, $gr_users);
+                }
+                $thread->addParticipant($groups_users);
             }
 
             return redirect()->route('messages.show', $id);
         }
         abort (404);
+    }
+
+    /**
+     * Soft deletes current participant
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function destroy (Thread $thread)
+    {
+        $thread->removeParticipant(Auth::id());
+        return redirect('/messages');
     }
 }
