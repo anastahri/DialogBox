@@ -26,17 +26,3 @@
         </div>
     </div>
 </div>
-
-@section ('scripts')
-    <script src="jquery.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $(".dropdown-hover").hover(function(){
-            var dropdownMenu = $(this).children(".dropdown-hover-menu");
-            if(dropdownMenu.is(":visible")){
-                dropdownMenu.parent().toggleClass("open");
-            }
-        });
-    });     
-    </script>
-@endsection

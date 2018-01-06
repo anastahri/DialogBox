@@ -6,7 +6,6 @@
 
 <div class="container">
 
-@include ('alert')
     <div class="row">
         @include('home_sidebar')
         <div class="col-md-9">    

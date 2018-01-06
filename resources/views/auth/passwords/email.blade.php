@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_no_alert')
 
 @section('content')
 <div class="container">
@@ -8,11 +8,7 @@
                 <div class="panel-heading">Reset Password</div>
 
                 <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    
 
                     <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
                         {{ csrf_field() }}

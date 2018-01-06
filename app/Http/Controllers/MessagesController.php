@@ -13,6 +13,7 @@ use Carbon\Carbon;
 
 class MessagesController extends Controller
 {
+    
     /**
      * Show all of the message threads to the user.
      *
