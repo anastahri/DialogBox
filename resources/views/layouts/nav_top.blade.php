@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
 
@@ -21,10 +21,16 @@
             <ul class="nav navbar-nav">
                 @if(Auth::check())
                     @if(Auth::user()->hasRole('admin'))
-                    <li><a href="{{ url('/admin') }}">Dashboard <span class="sr-only">(current)</span></a></li>
+                    <li @php 
+                    echo Request::is('admin/*') ? 'class="active"' : '';
+                    @endphp ><a href="{{ url('/admin') }}">Dashboard <span class="sr-only">(current)</span></a></li>
                     @endif
-                    <li><a href="/messages">Conversations @include('messenger.unread-count')</a></li>
-                    <li><a href="/messages/create">New Message</a></li>
+                    <li @php 
+                    echo Request::is('messages') ? 'class="active"' : '';
+                    @endphp ><a href="/messages">Conversations @include('messenger.unread-count')</a> </li>
+                    <li @php 
+                    echo Request::is('messages/create') ? 'class="active"' : '';
+                    @endphp ><a href="/messages/create">New Message</a></li>
                 @else
                     &nbsp;
                 @endif
