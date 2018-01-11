@@ -47,7 +47,7 @@ class GroupsController extends Controller
         ]);
     	$group = new Group($data);
     	$group->save();
-        return redirect('/admin/groups')->with('success', 'Group added!');
+        return redirect('/admin/users/groups')->with('success', 'Group added!');
     }
 
     public function show (Group $group)
@@ -76,12 +76,12 @@ class GroupsController extends Controller
         $group->group_id = $request->get('group_id');
         $group->save();
 
-        return redirect('/admin/groups')->with('success', 'Group updated!');
+        return redirect('/admin/users/groups')->with('success', 'Group updated!');
     }
 
     public function destroy (Group $group)
     {
         $group->delete();
-        return redirect('admin/groups')->with('success','Group has been  deleted');
+        return redirect('admin/users/groups')->with('success','Group has been  deleted');
     }
 }

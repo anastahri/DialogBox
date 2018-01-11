@@ -4,41 +4,44 @@
 
 @section('content')
 
-<div class="container">
+    @include('public_messages.create')
 
-    <div class="row">
-        @include('home_sidebar')
-        <div class="col-md-9">    
-            @include ('public_messages.create')
-            
-            @foreach($pub_messages as $pub_message)
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <table>
-                        <tr>
-                            <td><a href="{{ url('/profile')}}/{{ $pub_message->User->username }}"><img class="avatar_img_small" src="{{ url('/images/avatars') }}/{{ $pub_message->user->avatar }}"></a></td>
-                            <td rowspan="2" style="vertical-align: top; padding: 10px">
-                                {{ $pub_message->message }}
-                                @if(Auth::id() == $pub_message->User->id)
-                                    <form action="{{action('Public_messageController@destroy', $pub_message['id'])}}" method="post">
-                                        {{csrf_field()}}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <a href="{{action('Public_messageController@edit', $pub_message->id)}}">Edit</a> - <a href="#" onclick="submit()">Delete</a>
-                                    </form>
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center">
-                                <a href="/profile/{{ $pub_message->User->username }}">{{ $pub_message->User->name }}</a>
-                            </td>
-                        </tr>
-                    </table>
+    @foreach($pub_messages as $pub_message)
+            <div class="row">
+              <section class="col-lg-12">               
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                  </div>
+                  
+                  <div class="box-body chat">
+                    <div class="item">
+                      <img alt="user image"  class="offline" src="{{ url('/images/avatars') }}/{{ $pub_message->user->avatar }}">
+                      <p class="message">
+                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i><b> 
+                          @if ($pub_message->updated_at->diffInMinutes(Carbon\Carbon::now())<60)
+                            {{ $pub_message->updated_at->diffForHumans() }}
+                          @elseif ($pub_message->updated_at->isToday())
+                            {{$pub_message->updated_at->format('H:i')}}
+                          @elseif ($pub_message->updated_at->isYesterday())
+                            Yesterday
+                          @else
+                            {{$pub_message->updated_at->format('d/m/y')}}
+                          @endif
+                        </b></small>
+                        <a  class="name" href="/profile/{{ $pub_message->User->username }}">
+                          {{ $pub_message->User->name }}
+                        </a>
+                        {{ $pub_message->message }}
+                      </p>
+                    </div>
+                  </div>
+                  
                 </div>
+              </section>
             </div>
-            @endforeach
-            
-        </div>
-    </div>
-</div>
+    @endforeach
+
 @endsection

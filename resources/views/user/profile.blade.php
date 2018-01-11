@@ -4,14 +4,12 @@
 {{ $user->name }}
 @endsection
 @section('content')
-
-<div class="container">
     
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">{{ $user->name }}'s profile</div>
-                <div class="panel-body text-center">
+        <section class="col-lg-12">
+            <div class="box box-solid box-primary">
+                <div class="box-header with-border">{{ $user->name }}'s profile</div>
+                <div class="box-body text-center">
                     <img class="avatar_img" src="{{ url('/images/avatars') }}/{{ $user->avatar }}">
                     <h2>{{ $user->name }}</h2>
                     <h4>Group : 
@@ -32,8 +30,7 @@
                     @endif
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</div>
 
 @endsection

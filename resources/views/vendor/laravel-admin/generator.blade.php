@@ -3,14 +3,12 @@
 @section('title', 'Generator')
 
 @section('content')
-    <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Generator</div>
-                    <div class="panel-body">
+            <section class="col-md-9">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">Generator</div>
+                    <div class="box-body">
 
                         <form class="form-horizontal" method="post" action="{{ url('/admin/generator') }}">
                             {{ csrf_field() }}
@@ -103,9 +101,8 @@
 
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
 @endsection
 
 @section('scripts')

@@ -4,27 +4,26 @@
 
 @section('content')
 
-<div class="container">
+
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default panel-flush">
-                <form method="post" action="{{action('Public_messageController@update', $id)}}">
-                    {{csrf_field()}}
-                    <input name="_method" type="hidden" value="PATCH">
-            
-                    <div class="panel-heading">Edit A Public Message</div>
-                    <div class="panel-body">
+        <section class="col-lg-12">
+            <div class="box box-solid box-primary">
+                <div class="box-header with-border">Edit A Public Message</div>
+                <div class="box-body">
+                        <form method="post" action="{{action('Public_messageController@update', $id)}}">
+                        {{csrf_field()}}
+                        <input name="_method" type="hidden" value="PATCH">
                         <div class="form-group">
                             <textarea name="message" class="form-control" style="resize: vertical;">{{$pub_message->message}}</textarea>
                         </div>
                         <div align="right">
                             <button type="submit" class="btn btn-success" style="margin-left:38px">Update Message</button>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-      </div>
-  </div>
-</div>
+        </section>
+    </div>
+
 
 @endsection

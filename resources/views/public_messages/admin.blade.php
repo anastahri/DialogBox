@@ -3,13 +3,13 @@
 @section('title', 'Manage Posts')
 
 @section('content')
-    <div class="container">
+    
         <div class="row">
-            @include('admin.sidebar')
-            <div class="col-md-9">
-              <div class="panel panel-default">
-                <div class="panel-heading">Posts</div>
-                <div class="panel-body">
+    
+            <section class="col-lg-12">
+              <div class="box box-solid box-primary">
+                <div class="box-header with-border">Posts</div>
+                <div class="box-body">
                   <table class="table table-responsive">
                   <thead>
                     <tr>
@@ -39,7 +39,7 @@
 
                 </div>
               </div>
-            </div>
+            </section>
         </div>
-    </div>
+    
 @endsection

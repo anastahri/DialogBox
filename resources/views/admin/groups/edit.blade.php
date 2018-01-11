@@ -3,17 +3,15 @@
 @section('title', 'Edit a Group')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Edit a Group</div>
-                    <div class="panel-body">
-                        <a href="{{ url('admin/groups') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+    
+        <div class="row">    
+            <section class="col-lg-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">Edit a Group</div>
+                    <div class="box-body">
+                        <a href="{{ url('admin/users/groups') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         
-                        <form class="form-horizontal" method="POST" action="{{ url('/admin/groups') }}/{{ $group->id }}">
+                        <form class="form-horizontal" method="POST" action="{{ url('/admin/users/groups') }}/{{ $group->id }}">
                             
                             {{ csrf_field() }}
                             <input name="_method" type="hidden" value="PATCH">
@@ -70,7 +68,6 @@
 
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
 @endsection

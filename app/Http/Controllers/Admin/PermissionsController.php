@@ -51,7 +51,7 @@ class PermissionsController extends Controller
 
         Permission::create($request->all());
 
-        return redirect('admin/permissions')->with('success', 'Permission added!');
+        return redirect('admin/users/permissions')->with('success', 'Permission added!');
     }
 
     /**
@@ -97,7 +97,7 @@ class PermissionsController extends Controller
         $permission = Permission::findOrFail($id);
         $permission->update($request->all());
 
-        return redirect('admin/permissions')->with('success', 'Permission updated!');
+        return redirect('admin/users/permissions')->with('success', 'Permission updated!');
     }
 
     /**
@@ -111,6 +111,6 @@ class PermissionsController extends Controller
     {
         Permission::destroy($id);
 
-        return redirect('admin/permissions')->with('success', 'Permission deleted!');
+        return redirect('admin/users/permissions')->with('success', 'Permission deleted!');
     }
 }

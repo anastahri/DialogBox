@@ -26,7 +26,6 @@ class HomeController extends Controller
     public function index()
     {
         $pub_messages = Public_message::all()->sortByDesc('updated_at');
-        $groupes = Group::whereGroup_id(null)->get();
-        return view('home',compact('pub_messages', 'groupes'));
+        return view('home',compact('pub_messages'));
     }
 }

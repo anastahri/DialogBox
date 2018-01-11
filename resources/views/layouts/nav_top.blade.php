@@ -1,65 +1,44 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                @if(Auth::check())
-                    @if(Auth::user()->hasRole('admin'))
-                    <li @php 
-                    echo Request::is('admin/*') ? 'class="active"' : '';
-                    @endphp ><a href="{{ url('/admin') }}">Dashboard <span class="sr-only">(current)</span></a></li>
-                    @endif
-                    <li @php 
-                    echo Request::is('messages') ? 'class="active"' : '';
-                    @endphp ><a href="/messages">Conversations @include('messenger.unread-count')</a> </li>
-                    <li @php 
-                    echo Request::is('messages/create') ? 'class="active"' : '';
-                    @endphp ><a href="/messages/create">New Message</a></li>
-                @else
-                    &nbsp;
-                @endif
-            </ul>
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
-                @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
-                            <img class="avatar_nav_dropdown" src="{{ url('/images/avatars') }}/{{ Auth::user()->avatar }}">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ url('/profile')}}/{{Auth::user()->username }}"><i class="fa fa-btn fa-user"></i> Your profile</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-btn fa-sign-out"></i> Logout</a>
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
-            </ul>
-        </div>
-    </div>
-</nav>
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="{{ url('/') }}" class="logo">{{ config('app.name', 'DialogBox') }}</a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+              <!-- Sidebar toggle button-->
+              <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+              </a>
+              @if(Auth::user())
+              <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                  <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <img src="{{ url('/images/avatars') }}/{{ Auth::user()->avatar }}" class="user-image" alt="User Image"/>
+                      <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <!-- User image -->
+                      <li class="user-header">
+                        <img src="{{ url('/images/avatars') }}/{{ Auth::user()->avatar }}" class="img-circle" alt="User Image" />
+                        <p>
+                          {{ Auth::user()->name }}
+                          <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                        </p>
+                      </li>
+                      <!-- Menu Body -->
+                      <li class="user-body">
+                        <div class="pull-left">
+                          <a href="{{ url('/profile')}}/{{Auth::user()->username }}" class="btn btn-default btn-flat">Profile</a>
+                        </div>
+                        <div class="pull-right">
+                          {{-- <a href="#" class="btn btn-default btn-flat">Sign out</a> --}}
+                          <a class="btn btn-default btn-flat" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a>
+                          <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              @endif
+            </nav>
+        </header>

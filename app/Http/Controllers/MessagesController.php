@@ -25,11 +25,11 @@ class MessagesController extends Controller
         //$threads = Thread::getAllLatest()->get();
 
         // All threads that user is participating in
-         $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
+        $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
 
         // All threads that user is participating in, with new messages
         // $threads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
-        $groupes = Group::whereGroup_id(null)->get();
+        
         return view('messenger.index', compact('threads', 'groupes'));
     }
 
@@ -52,8 +52,6 @@ class MessagesController extends Controller
             $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
 
             $thread->markAsRead($userId);
-            // $groupes for sidebar
-            $groupes = Group::whereGroup_id(null)->get();
             
             // $user_groups for recipients
             $user_groups = Group::whereExists(function ($query) {
@@ -74,8 +72,6 @@ class MessagesController extends Controller
     public function create()
     {
         $users = User::where('id', '!=', Auth::id())->get();
-        
-        $groupes = Group::whereGroup_id(null)->get();
         
         $user_groups = Group::whereExists(function ($query) {
           $query->select('group_id')->from('users')->whereRaw('users.group_id = groups.id');

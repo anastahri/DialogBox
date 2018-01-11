@@ -5,13 +5,11 @@
 @endsection
 @section('content')
 
-<div class="container">
-
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Group : <b>{{ $group->label }}</b></div>
-                <div class="panel-body">
+        <section class="col-lg-12">
+            <div class="box box-solid box-primary">
+                <div class="box-header with-border">Group : <b>{{ $group->label }}</b></div>
+                <div class="box-body">
                     
                     @if (count($group_array))
                         <ul class="breadcrumb">
@@ -44,8 +42,7 @@
                     @endif
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</div>
 
 @endsection

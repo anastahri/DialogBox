@@ -5,20 +5,19 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Group</div>
-                    <div class="panel-body">
+            <section class="col-lg-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">Group</div>
+                    <div class="box-body">
 
-                        <a href="{{ url('/admin/groups') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <a href="{{ url('/admin/groups/' . $group->id . '/edit') }}" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                        <a href="{{ url('/admin/users/groups') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/users/groups/' . $group->id . '/edit') }}" title="Edit User"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                         {!! Form::open([
                             'method' => 'DELETE',
-                            'url' => ['/admin/grougs', $group->id],
+                            'url' => ['/admin/users/groups', $group->id],
                             'style' => 'display:inline'
                         ]) !!}
                             {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
@@ -60,7 +59,7 @@
 
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
+
 @endsection

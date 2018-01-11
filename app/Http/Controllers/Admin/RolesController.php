@@ -62,7 +62,7 @@ class RolesController extends Controller
             }
         }
 
-        return redirect('admin/roles')->with('success', 'Role added!');
+        return redirect('admin/users/roles')->with('success', 'Role added!');
     }
 
     /**
@@ -117,7 +117,7 @@ class RolesController extends Controller
             }
         }
 
-        return redirect('admin/roles')->with('success', 'Role updated!');
+        return redirect('admin/users/roles')->with('success', 'Role updated!');
     }
 
     /**
@@ -131,6 +131,6 @@ class RolesController extends Controller
     {
         Role::destroy($id);
 
-        return redirect('admin/roles')->with('success', 'Role deleted!');
+        return redirect('admin/users/roles')->with('success', 'Role deleted!');
     }
 }

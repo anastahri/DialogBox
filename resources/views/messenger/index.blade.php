@@ -1,22 +1,24 @@
 @extends('layouts.app')
 @section('title', 'Messages')
 @section('content')
-<div class="container">
 
 <div class="row">    
-	@include('home_sidebar')
-    <div class="col-md-9">    
-    	<div class="panel panel-default">
-    		<div class="panel-heading">Conversations</div>
+    <section class="col-lg-12">  
+		<div class="box box-solid box-primary">
+            <div class="box-header with-border">Conversations</div>
 			   @if (count($threads) > 0)
 				<table class="table table-hover table-condensed">
 					<thead>
-					<tr class="bg-primary">
+					<tr style="background-color: #AED6F1">
 						<th><input type="checkbox" id="mainCheckbox" value="0"></th>
-						<th></th>
-						<th>Subject</th>
-						<th>Last message</th>
-						<th>Sent</th>
+						<th>
+							<Form method="DELETE" action="messages/thread->id" style="display:inline;">
+							    <button class="fa fa-trash-o" type="submit" title="Delete Selected Threads" onclick='return confirm("Confirm delete?")'></button>
+							</form>
+						</th>
+						<th>Topic</th>
+						<th>Replies</th>
+						<th>Activity</th>
 						<th>Other participant(s)</th>
 					</tr>
 					</thead>
@@ -36,7 +38,7 @@
 							]) !!}
 							    {!! Form::button('', array(
 							            'type' => 'submit',
-							            'class' => 'oi oi-trash',
+							            'class' => 'fa fa-trash-o',
 							            'title' => 'Delete User',
 							            'onclick'=>'return confirm("Confirm delete?")'
 							    )) !!}
@@ -50,15 +52,15 @@
 
         					</a></td>
 							<td class="td-click"  data-href="{{ route('messages.show', $thread->id) }}"><a class="clickable-row-a" href="{{ route('messages.show', $thread->id) }}">
-								{{ $thread->latestMessage->body }}
+								{{ App\Message::whereThread_id($thread->id)->count() - 1 }}
 							</a></td>
 							<td class="td-click"  data-href="{{ route('messages.show', $thread->id) }}"><a class="clickable-row-a" href="{{ route('messages.show', $thread->id) }}">
 								@if ($thread->latestMessage->created_at->diffInMinutes(Carbon\Carbon::now())<60)
 									{{ $thread->latestMessage->created_at->diffForHumans() }}
 								@elseif ($thread->latestMessage->created_at->isToday())
-									{{$thread->latestMessage->created_at->format('H:i:s')}}
+									{{$thread->latestMessage->created_at->format('H:i')}}
 								@elseif ($thread->latestMessage->created_at->isYesterday())
-									yesterday
+									Yesterday
 								@else
 									{{$thread->latestMessage->created_at->format('d/m/y')}}
 								@endif
@@ -74,8 +76,7 @@
 				@include('messenger.partials.no-threads')
 			   @endif
 		</div>
-	</div>
-</div>
+	</section>
 </div>
 @endsection
 

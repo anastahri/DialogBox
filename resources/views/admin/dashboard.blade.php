@@ -3,19 +3,18 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="container">
+
     <div class="row">
-        @include('admin.sidebar')
+        
+        <section class="col-lg-12">
+            <div class="box box-solid box-primary">
+                <div class="box-header with-border">Dashboard</div>
 
-        <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
+                <div class="box-body">
                     Your application's dashboard.
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</div>
+
 @endsection

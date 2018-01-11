@@ -2,14 +2,11 @@
 @section('title', 'New message')
 @section('content')
     
-<div class="container">
-    
     <div class="row">    
-        @include('home_sidebar')
-        <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">New message</div>
-                <div class="panel-body"> 
+        <section class="col-lg-12">
+            <div class="box box-solid box-primary">
+                <div class="box-header with-border">New message</div>
+                <div class="box-body"> 
                     <form action="{{ route('messages.store') }}" method="post">
                         {{ csrf_field() }}
                         <!-- Subject Form Input -->
@@ -63,14 +60,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</div>
 
-@endsection
-
-@section ('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection

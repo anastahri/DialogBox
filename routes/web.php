@@ -26,16 +26,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
+Route::get('admin', function () {
+	return redirect('admin/users');
+});
+
+Route::group(['prefix' => 'admin/users', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
 	Route::get('/', ['uses' => 'Admin\AdminController@index']);
 	Route::resource('roles', 'Admin\RolesController');
 	Route::resource('permissions', 'Admin\PermissionsController');
 	Route::resource('users', 'Admin\UsersController');
-	Route::get('public_messages','Public_messageController@admin')->middleware('auth');
 	//Route::get('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
 	//Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
 });
-
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
+	Route::get('public_messages','Public_messageController@admin');
+});
 Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function () {
 	Route::get('/{username}','ProfileController@profile');
 	Route::get('info/edit','ProfileController@edit');
@@ -47,7 +52,7 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
-	Route::resource('admin/groups','GroupsController')->middleware('auth');
+	Route::resource('admin/users/groups','GroupsController')->middleware('auth');
 });
 
 Route::get('group/{name}', 'GroupsController@group');

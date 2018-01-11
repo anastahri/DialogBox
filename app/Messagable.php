@@ -62,6 +62,17 @@ trait Messagable
     }
 
     /**
+     * Returns the new messages count for user unless they were deleted.
+     *
+     * @return int
+     */
+    public function newThreadsCount2()
+    {
+        $threads = Thread::forUser($this->getKey())->get()->pluck('id');
+        return $this->threadsWithNewMessages()->whereIn('id',$threads)->count();
+    }    
+
+    /**
      * Returns the new messages count for user.
      *
      * @return int

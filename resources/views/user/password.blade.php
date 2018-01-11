@@ -3,14 +3,12 @@
 @section('title','Edit your profile')
 
 @section('content')
-
-<div class="container">
     
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Profile of {{ $user->name }}</div>
-                <div class="panel-body text-center">
+        <section class="col-lg-12">
+            <div class="box box-solid box-primary">
+                <div class="box-header with-border">Profile of {{ $user->name }}</div>
+                <div class="box-body text-center">
                     <form method="POST" action="/profile/password/edit/" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('old_password') ? ' has-error' : ''}}">
@@ -42,8 +40,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</div>
 
 @endsection

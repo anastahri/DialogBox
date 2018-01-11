@@ -3,17 +3,16 @@
 @section('title', 'Create New User')
 
 @section('content')
-    <div class="container">
+    
         <div class="row">
-            @include('admin.sidebar')
+            
+            <section class="col-lg-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">Create New User</div>
+                    <div class="box-body">
+                        <a href="{{ url('/admin/users/users') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Create New User</div>
-                    <div class="panel-body">
-                        <a href="{{ url('/admin/users') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-
-                        <form method="POST" action="{{ url('admin/users') }}" class="form-horizontal">
+                        <form method="POST" action="{{ url('admin/users/users') }}" class="form-horizontal">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="name" class="col-md-4 control-label">Name: </label>
@@ -74,7 +73,7 @@
 
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
+
 @endsection

@@ -1,4 +1,4 @@
-<div class="panel-body"> 
+<div class="box-body"> 
     <div class="media">
         <a class="pull-left" href="{{ url('/profile')}}/{{ $message->user->username }}"><img class="avatar_img_small" src="{{ url('/images/avatars') }}/{{ $message->user->avatar }}" alt="{{ $message->user->name }}"><div class="text-center">{{ $message->user->name }}</div></a>
         <div class="media-body">
@@ -19,4 +19,4 @@
         </div>
     </div>
 </div>
-<div class="panel-heading"></div>
+<hr />

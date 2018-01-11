@@ -1,5 +1,3 @@
-body { padding-top: 70px; }
-
 .avatar_img{
 	max-width: 150px;
 	border: 2px solid #fff;
@@ -14,21 +12,6 @@ body { padding-top: 70px; }
 
 .avatar_nav_dropdown{
 	width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%
-}
-
-@media screen and (min-width: 768px) {
-  .dropdown-hover:hover .dropdown-hover-menu{
-        display: block;
-    }
-    .dropdown-hover-menu{
-        margin-top: 0;
-    }
-    .dropdown-hover-toggle{
-        margin-bottom: 2px;
-    }
-    .navbar-hover .dropdown-hover-toggle, .nav-hover-tabs .dropdown-hover-toggle{
-        margin-bottom: 0;
-    }
 }
 
 *[data-href] {

@@ -3,21 +3,20 @@
 @section('title', 'Edit Role')
 
 @section('content')
-    <div class="container">
+    
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Edit Role</div>
-                    <div class="panel-body">
-                        <a href="{{ url('/admin/roles') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+            <section class="col-lg-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">Edit Role</div>
+                    <div class="box-body">
+                        <a href="{{ url('/admin/users/roles') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
                         {!! Form::model($role, [
                             'method' => 'PATCH',
-                            'url' => ['/admin/roles', $role->id],
+                            'url' => ['/admin/users/roles', $role->id],
                             'class' => 'form-horizontal'
                         ]) !!}
 
@@ -27,7 +26,7 @@
 
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
+
 @endsection

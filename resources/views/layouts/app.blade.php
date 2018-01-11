@@ -2,8 +2,18 @@
 
 @include('layouts.nav_top')
 
-@include ('alert')
+@include('layouts.sidebar')
 
-@yield('content')
+      <div class="app">
+        <div class="content-wrapper">
+          <section class="content">
+
+	@include ('alert')
+	@yield('content')
+
+          </section><!-- /.content -->
+        </div>
+
+      </div>
         
 @include('layouts.footer')

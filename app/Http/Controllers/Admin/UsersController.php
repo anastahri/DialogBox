@@ -70,7 +70,7 @@ class UsersController extends Controller
                 $user->assignRole($role);
             }
         }
-        return redirect('admin/users')->with('success', 'User added!');
+        return redirect('admin/users/users')->with('success', 'User added!');
     }
 
     /**
@@ -150,7 +150,7 @@ class UsersController extends Controller
                 $user->assignRole($role);
             }
         }
-        return redirect('admin/users')->with('success', 'User updated!');
+        return redirect('admin/users/users')->with('success', 'User updated!');
     }
 
     /**
@@ -165,6 +165,6 @@ class UsersController extends Controller
         Public_message::whereUser_id($id)->delete();
         User::destroy($id);
 
-        return redirect('admin/users')->with('success', 'User deleted!');
+        return redirect('admin/users/users')->with('success', 'User deleted!');
     }
 }

@@ -3,17 +3,16 @@
 @section('title', 'Create New Group')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Create New Group</div>
-                    <div class="panel-body">
-                        <a href="{{ url('admin/groups') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+    <div class="row">
+
+            <section class="col-lg-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header with-border">Create New Group</div>
+                    <div class="box-body">
+                        <a href="{{ url('admin/users/groups') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         
-                        <form class="form-horizontal" method="POST" action="{{ url('/admin/groups') }}">
+                        <form class="form-horizontal" method="POST" action="{{ url('/admin/users/groups') }}">
                             
                             {{ csrf_field() }}
                             
@@ -60,7 +59,8 @@
 
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+    
     </div>
+
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts.app_no_alert')
+@extends('layouts.app0')
 
 @section('title', 'Register')
 
