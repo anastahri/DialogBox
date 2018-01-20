@@ -7,41 +7,59 @@
     @include('public_messages.create')
 
     @foreach($pub_messages as $pub_message)
-            <div class="row">
-              <section class="col-lg-12">               
-                <div class="box box-primary">
-                  <div class="box-header">
-                    <div class="box-tools pull-right">
-                      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                  </div>
+        <div class="row">
+          <section class="col-lg-12">               
+            <div class="box box-primary">
+              <div class="box-header">
+                <div class="box-tools pull-right">
                   
-                  <div class="box-body chat">
-                    <div class="item">
-                      <img alt="user image"  class="offline" src="{{ url('/images/avatars') }}/{{ $pub_message->user->avatar }}">
-                      <p class="message">
-                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i><b> 
-                          @if ($pub_message->updated_at->diffInMinutes(Carbon\Carbon::now())<60)
-                            {{ $pub_message->updated_at->diffForHumans() }}
-                          @elseif ($pub_message->updated_at->isToday())
-                            {{$pub_message->updated_at->format('H:i')}}
-                          @elseif ($pub_message->updated_at->isYesterday())
-                            Yesterday
-                          @else
-                            {{$pub_message->updated_at->format('d/m/y')}}
-                          @endif
-                        </b></small>
-                        <a  class="name" href="/profile/{{ $pub_message->User->username }}">
-                          {{ $pub_message->User->name }}
-                        </a>
-                        {{ $pub_message->message }}
-                      </p>
-                    </div>
-                  </div>
-                  
+                  @if(Auth::id()==$pub_message->User->id)
+                      
+                      {!! Form::open([
+                          'id' => 'delete_form',
+                          'method' => 'DELETE',
+                          'url' => ['/public_messages', $pub_message->id],
+                          'style' => 'display:inline',
+                          'onsubmit' => 'return confirm("Confirm delete?")'
+                      ]) !!}
+                          <a href="{{ url('/public_messages/' . $pub_message->id . '/edit') }}" title="Edit Post"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                          <a id="trash_post" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                      {!! Form::close() !!}
+
+                    @endif
+                
+                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                 </div>
-              </section>
+              </div>
+              
+              <div class="box-body chat">
+                <div class="item">
+                  <img alt="user image"  class="offline" src="{{ url('/images/avatars') }}/{{ $pub_message->user->avatar }}">
+                  <p class="message">
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i><b> 
+                      {{ $pub_message->Time() }}
+                    </b></small>
+                    <a  class="name" href="/profile/{{ $pub_message->User->username }}">
+                      {{ $pub_message->User->name }}
+                    </a>
+                    {{ $pub_message->message }}
+                  </p>
+                </div>
+              </div>
+              
             </div>
+          </section>
+        </div>
     @endforeach
 
+@endsection
+
+@section('scripts')
+<script>
+$(document).ready(function() { 
+    $('#trash_post').click(function() {
+        $('#delete_form').submit();
+    });
+});
+</script>
 @endsection
