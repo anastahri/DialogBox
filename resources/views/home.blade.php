@@ -28,7 +28,8 @@
 
                     @endif
                 
-                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  
+                  <button style="margin-top: 0; margin-bottom: 4px;padding: 0;" class="btn btn-box-tool" data-widget="remove"><a href="#"><i class="fa fa-times"></i></a></button>
                 </div>
               </div>
               

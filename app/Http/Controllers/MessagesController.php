@@ -195,4 +195,12 @@ class MessagesController extends Controller
         $thread->removeParticipant(Auth::id());
         return redirect('/messages');
     }
+
+    public function delete_threads (Request $request)
+    {
+        foreach ($request->threads as $thread) {
+            Thread::find($thread)->removeParticipant(Auth::id());
+        }
+        return redirect('/messages');
+    }
 }

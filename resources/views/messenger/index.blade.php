@@ -12,8 +12,10 @@
 					<tr style="background-color: #AED6F1">
 						<th><input type="checkbox" id="mainCheckbox" value="0"></th>
 						<th>
-							<Form method="DELETE" action="messages/thread->id" style="display:inline;">
-							    <button class="fa fa-trash-o" type="submit" title="Delete Selected Threads" onclick='return confirm("Confirm delete?")'></button>
+							<form method="POST" action="/messages/delete_threads/threads" style="display:inline;" id="delete_multiple">
+								{!! csrf_field() !!}
+								<input type="hidden" name="_method" value="delete" />
+							    <button style="margin: 0; padding: 0 7px 0 7px;" class="btn btn-danger" type="submit" title="Delete Selected Threads" onclick='return confirm("Confirm delete?")'><i class="fa fa-trash"></i></button>
 							</form>
 						</th>
 						<th>Topic</th>
@@ -29,7 +31,7 @@
 						@else
 						<tr>
 						@endif
-							<td><input type="checkbox" class="listCheckbox" value="{{$thread->id}}"></td>
+							<td><input name="threads[]" type="checkbox" class="listCheckbox" value="{{$thread->id}}" form="delete_multiple"></td>
 							<td>
 							{!! Form::open([
 							    'method' => 'DELETE',
