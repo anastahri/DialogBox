@@ -35,7 +35,7 @@
               
               <div class="box-body chat">
                 <div class="item">
-                  <img alt="user image"  class="offline" src="{{ url('/images/avatars') }}/{{ $pub_message->user->avatar }}">
+                  <img alt="user image"  {{-- class="offline" --}} src="{{ url('/images/avatars') }}/{{ $pub_message->user->avatar }}">
                   <p class="message">
                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i><b> 
                       {{ $pub_message->Time() }}

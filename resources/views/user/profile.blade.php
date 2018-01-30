@@ -26,7 +26,7 @@
                         <a href="{{ url('/profile/info/edit') }}" class="btn btn-warning">Modify profile</a>
                         <a href="{{ url('/profile/password/edit/') }}" class="btn btn-warning">Modify password</a>
                     @else 
-                        <a href="#" class="btn btn-primary">Send a message</a>
+                        <a href="{{ url('/messages/create') }}/{{ $user->id }}" class="btn btn-primary">Send a message</a>
                     @endif
                 </div>
             </div>

@@ -5,7 +5,10 @@
 <div class="row">    
     <section class="col-lg-12">    
         <div class="box box-solid box-primary">
-            <div class="box-header with-border"><b>Topic :</b> {{ $thread->subject }}</div>
+            <div class="box-header with-border">
+                <b>Topic :</b> {{ $thread->subject }} 
+                {{-- <form method="POST" action="" style="padding: 0; margin: 0; display: inline;"><button type="submit" class="pull-right btn btn-danger btn-xs" style="padding: 2px;">Report</button></form> --}}
+            </div>
             @each('messenger.partials.messages', $thread->messages, 'message')
             <div class="box-body"> 
                 <b>Members : </b>

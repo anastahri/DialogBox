@@ -17,7 +17,7 @@
                                 Users :
                                 @foreach($users as $user)
                                     <label title="{{ $user->name }}">
-                                        <input type="checkbox" name="user_recipients[]" value="{{ $user->id }}">{{ $user->name }}
+                                        <input type="checkbox" name="user_recipients[]" id="{{ $user->id }}" value="{{ $user->id }}">{{ $user->name }}
                                     </label>
                                 @endforeach
                             </div>
@@ -63,4 +63,12 @@
         </section>
     </div>
 
+@endsection
+
+@section('scripts')
+    
+        <script>
+            $( "#{{$id}}" ).prop( "checked", true );
+        </script>
+    
 @endsection

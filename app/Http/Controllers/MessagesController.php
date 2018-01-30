@@ -69,7 +69,7 @@ class MessagesController extends Controller
      *
      * @return mixed
      */
-    public function create()
+    public function create($id = null)
     {
         $users = User::where('id', '!=', Auth::id())->get();
         
@@ -77,7 +77,7 @@ class MessagesController extends Controller
           $query->select('group_id')->from('users')->whereRaw('users.group_id = groups.id');
         })->get();
 
-        return view('messenger.create', compact('users', 'groupes', 'user_groups'));
+        return view('messenger.create', compact('users', 'groupes', 'user_groups', 'id'));
     }
 
     /**
