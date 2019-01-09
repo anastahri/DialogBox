@@ -1,7 +1,7 @@
         <header class="main-header">
             <!-- Logo -->
             <a href="{{ url('/') }}" class="logo">{{-- {{ config('app.name', 'DialogBox') }} --}}
-              <img style="width: 150px; height: 40px; top: 50%" src="/images/logo_main.png">
+              <img style="width: 150px; height: 40px; top: 50%" src="{{ url('/images/logo_main.png') }}">
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">

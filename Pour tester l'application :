@@ -1,0 +1,14 @@
+Pour tester l'application :
+
+- Commencer par la création de la base mysql "dialogbox" (avec user root et sans password) et des tables 
+à l'aide du fichier MySQL_tables/dialogbox.sql
+
+- Copier le contenu du dossier www vers le répertoire www du serveur Apache.
+
+- Un administrateur du site à déja été crée dans la base de données :
+		- username : admin 
+		- password : admin00
+
+- Un utilisateur ordinaire :
+		- username : anas
+		- password : anasta

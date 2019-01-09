@@ -23,13 +23,13 @@
                           'onsubmit' => 'return confirm("Confirm delete?")'
                       ]) !!}
                           <a href="{{ url('/public_messages/' . $pub_message->id . '/edit') }}" title="Edit Post"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                          <a id="trash_post" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          <a id="trash_post" href="#" title="Delete Post"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                       {!! Form::close() !!}
 
                     @endif
                 
                   
-                  <button style="margin-top: 0; margin-bottom: 4px;padding: 0;" class="btn btn-box-tool" data-widget="remove"><a href="#"><i class="fa fa-times"></i></a></button>
+                  <button style="margin-top: 0; margin-bottom: 4px;padding: 0;" class="btn btn-box-tool" data-widget="remove" title="Hide"><a href="#"><i class="fa fa-times"></i></a></button>
                 </div>
               </div>
               
@@ -37,7 +37,7 @@
                 <div class="item">
                   <img alt="user image"  {{-- class="offline" --}} src="{{ url('/images/avatars') }}/{{ $pub_message->user->avatar }}">
                   <p class="message">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i><b> 
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o" title="Last update at : {{ $pub_message->updated_at }}"></i><b> 
                       {{ $pub_message->Time() }}
                     </b></small>
                     <a  class="name" href="/profile/{{ $pub_message->User->username }}">
