@@ -11,7 +11,10 @@ class GroupsController extends Controller
 {
     public function group ($name)
     {
+        // Single group
         $group = Group::whereName($name)->first();
+
+        // Declaring a group array which will contain the group and its subgroups and so on...
         $group_array = array();
         $gid = $group->group_id;
         while ($gid) {
@@ -19,6 +22,7 @@ class GroupsController extends Controller
             array_unshift($group_array, $gr);
             $gid = $gr->group_id;
         }
+        
         $group_users = User::whereGroup_id($group->id)->get();
         $sub_groups = Group::whereGroup_id($group->id)->get();
         return view('group.group', compact('group', 'group_array', 'group_users', 'sub_groups'));

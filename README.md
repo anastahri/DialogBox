@@ -1,7 +1,11 @@
 # DialogBox
-Messaging app using Laravel
+Messaging app using Laravel.
 
-### Development :
+Based on packages :
+	- appzcoder/laravel-admin
+	- cmgmyr/messenger
+
+### Local deployment
 
 - Clone or fork this repository
 - Run the following commands :
@@ -27,3 +31,7 @@ Messaging app using Laravel
 	php artisan db:seed
 
 9. Serve the app, and log in (user: admin, password: admin). As an admin you can create Users, User groups, Roles and permissions.
+
+### Author
+
+Anas TAHRI
